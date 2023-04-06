@@ -35,6 +35,12 @@ void create(int A[], int n)
 {
     struct Node *t = NULL;
     
+    if(first != NULL)
+    {
+        printf("Linklist not created.\nThere is already an exsiting linklist");
+        return;
+    }
+    
     if(A)
     {
         for(int i = 0; i < n; ++i)
@@ -219,6 +225,71 @@ void freeLinklist(void)
     {
         temp = first;
         first = first->next;
-        free(temp);
+        free(temp);        
+    }
+    first = NULL;
+}
+
+/**
+ * @brief helper function for createSortedList
+ * @see void createSortedList(int A[], int n)
+ * @param key Element to be inserted into a sorted list
+ */
+void sortInsert(int key)
+{
+    struct Node *p = first;
+    
+    //keep moving next node until it reached the biggest
+    while(key > p->data && p->next != NULL)
+        p = p->next;
+    
+    //p is already the biggest at the start, so add new node to the front
+    if(p == first)
+    {
+        addToFront(key);
+    }
+    //p is the smallest, so add new node to the back
+    else if(p->next == NULL)
+    {
+        p->next = makeNode(key);
+    }
+    //insert new node in the middle
+    else
+    {
+        struct Node* newNode = makeNode(key);
+        newNode->next = p->next;
+        p->next = newNode;
+    }
+}
+/**
+ * @brief To create a sorted linklist
+ * @param A Array if int elements
+ * @param n The size of array
+ */
+void createSortedList(int A[], int n)
+{
+    if(first != NULL)
+    {
+        printf("Linklist not created.\nThere is already an exsiting linklist");
+        return;
+    }
+    
+    if(A)
+    {
+        int i = 0;
+        while(i < n)
+        {
+            if(first == NULL)
+            {
+                first = makeNode(A[i]);
+            }
+            else
+            {
+                sortInsert(A[i]);
+            }
+            
+            ++i;
+        }
+
     }
 }

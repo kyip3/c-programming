@@ -56,4 +56,7 @@ void addToEnd(int key);
 
 void freeLinklist(void);
 
+//to create a sorted list
+void createSortedList(int A[], int n);
+
 #endif /* linklist_h */

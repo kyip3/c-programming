@@ -2,7 +2,8 @@
 #include "list.h"
 #include <stdio.h>
 
-int main(int argc, const char * argv[])
+
+void testSimpleLinklist(void)
 {
     printf("A linklist implementation in C\n");
     
@@ -37,5 +38,21 @@ int main(int argc, const char * argv[])
     display(first);
     
     freeLinklist();
+}
+
+void testSortedLinkList(void)
+{
+    int A[] = {44,22,11,55,33};
+    createSortedList(A, 5);
+    display(first);
+    freeLinklist();
+}
+int main(int argc, const char * argv[])
+{
+    testSimpleLinklist();
+    
+    testSortedLinkList();
+
+    
     return 0;
 }
