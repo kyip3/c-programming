@@ -1,0 +1,2 @@
+# Instruction
+- Run main.c
